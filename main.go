@@ -33,7 +33,11 @@ func main() {
 		return
 	}
 
-	chainID, _ := backend.ChainID(context.Background())
+	chainID, err := backend.ChainID(context.Background())
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
 	fmt.Println("Chain ID", chainID)
 
 	auth := prepareTransactOps(backend, account, privateKey, chainID)
